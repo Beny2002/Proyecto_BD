@@ -1,0 +1,110 @@
+-- ─── USUARIOS ─────────────────────────────────────────────────────────────────
+-- Datos del cliente: Ana Martin Camino, Luis Cortes Fernandez, Marta Robles Bejarano
+INSERT INTO usuarios (nombre, apellidos, email) VALUES
+('Ana',   'Martin Camino',     'ana.martin@email.com'),
+('Luis',  'Cortes Fernandez',  'luis.cortes@email.com'),
+('Marta', 'Robles Bejarano',   'marta.robles@email.com'),
+-- Usuarios adicionales inventados
+('Carlos','Jimenez Ruiz',      'carlos.jimenez@email.com'),
+('Sofia', 'Navarro Perez',     'sofia.navarro@email.com'),
+('Diego', 'Fuentes Molina',    'diego.fuentes@email.com');
+
+
+-- ─── ARTISTAS ─────────────────────────────────────────────────────────────────
+-- Datos del cliente: Bad Bunny, Taylor Swift
+INSERT INTO artistas (nombre_artistico, pais, biografia) VALUES
+('Bad Bunny',    'Puerto Rico', 'Artista de trap y reggaeton, uno de los mas escuchados del mundo.'),
+('Taylor Swift', 'Estados Unidos', 'Cantautora de pop y country con multiples Grammy.'),
+-- Artistas adicionales inventados
+('Rosalia',      'España',       'Artista de flamenco pop y vanguardia musical.'),
+('Karol G',      'Colombia',     'Referente del reggaeton y pop latino femenino.');
+
+
+-- ─── ALBUMS ───────────────────────────────────────────────────────────────────
+INSERT INTO albums (titulo, anio_lanzamiento, genero, id_artista) VALUES
+-- Bad Bunny (id_artista = 1)
+('Un Verano Sin Ti',  2022, 'Reggaeton',  1),
+-- Taylor Swift (id_artista = 2)
+('Midnights',         2022, 'Pop',        2),
+-- Rosalia (id_artista = 3)
+('MOTOMAMI',          2022, 'Flamenco Pop', 3),
+-- Karol G (id_artista = 4)
+('Manana Sera Bonito',2023, 'Reggaeton',  4);
+
+
+-- ─── CANCIONES ────────────────────────────────────────────────────────────────
+-- Datos del cliente: "Tití Me Preguntó" y "Anti-Hero"
+INSERT INTO canciones (titulo, duracion_seg, id_album, id_artista) VALUES
+-- Album "Un Verano Sin Ti" (id_album=1, Bad Bunny id_artista=1)
+('Titi Me Pregunto',   248, 1, 1),
+('Me Porto Bonito',    178, 1, 1),
+('Ojitos Lindos',      203, 1, 1),
+-- Album "Midnights" (id_album=2, Taylor Swift id_artista=2)
+('Anti-Hero',          200, 2, 2),
+('Lavender Haze',      202, 2, 2),
+('Midnight Rain',      174, 2, 2),
+-- Album "MOTOMAMI" (id_album=3, Rosalia id_artista=3)
+('SAOKO',              162, 3, 3),
+('Despecha',           188, 3, 3),
+-- Album "Manana Sera Bonito" (id_album=4, Karol G id_artista=4)
+('TQG',                212, 4, 4),
+('Provenza',           222, 4, 4);
+
+
+-- ─── PLAYLISTS ────────────────────────────────────────────────────────────────
+-- Datos del cliente: "Gym" (Ana=id 1), "Relax" (Marta=id 3)
+INSERT INTO playlists (nombre, id_usuario) VALUES
+('Gym',          1),   -- Ana
+('Relax',        3),   -- Marta
+-- Playlists adicionales inventadas
+('Top Hits',     2),   -- Luis
+('Tarde en casa',4);   -- Carlos
+
+
+-- ─── PLAYLIST_CANCIONES ───────────────────────────────────────────────────────
+INSERT INTO playlist_canciones (id_playlist, id_cancion, posicion) VALUES
+-- Gym (Ana): canciones movidas
+(1, 1,  1),   -- Titi Me Pregunto
+(1, 2,  2),   -- Me Porto Bonito
+(1, 7,  3),   -- SAOKO
+(1, 9,  4),   -- TQG
+-- Relax (Marta): canciones tranquilas
+(2, 4,  1),   -- Anti-Hero
+(2, 5,  2),   -- Lavender Haze
+(2, 6,  3),   -- Midnight Rain
+(2, 10, 4),   -- Provenza
+-- Top Hits (Luis)
+(3, 1,  1),
+(3, 4,  2),
+(3, 8,  3),
+-- Tarde en casa (Carlos)
+(4, 3,  1),
+(4, 5,  2),
+(4, 6,  3);
+
+
+-- ─── REPRODUCCIONES ───────────────────────────────────────────────────────────
+-- Registros de escuchas para poder consultar cuáles se escuchan más
+INSERT INTO reproducciones (id_usuario, id_cancion, fecha_hora) VALUES
+-- Ana escucha mucho Titi Me Pregunto y Anti-Hero
+(1, 1, '2024-06-01 08:00:00'),
+(1, 1, '2024-06-02 08:00:00'),
+(1, 1, '2024-06-03 08:00:00'),
+(1, 4, '2024-06-04 09:00:00'),
+-- Luis escucha Anti-Hero y SAOKO
+(2, 4, '2024-06-01 10:00:00'),
+(2, 4, '2024-06-02 10:00:00'),
+(2, 7, '2024-06-03 10:00:00'),
+-- Marta escucha Titi Me Pregunto y Lavender Haze
+(3, 1, '2024-06-01 12:00:00'),
+(3, 5, '2024-06-02 12:00:00'),
+(3, 5, '2024-06-03 12:00:00'),
+-- Carlos
+(4, 9, '2024-06-01 15:00:00'),
+(4, 9, '2024-06-02 15:00:00'),
+-- Sofia
+(5, 4, '2024-06-01 18:00:00'),
+(5, 1, '2024-06-02 18:00:00'),
+-- Diego
+(6, 2, '2024-06-01 20:00:00'),
+(6, 4, '2024-06-03 20:00:00');
