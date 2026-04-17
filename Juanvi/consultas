@@ -1,1 +1,33 @@
+SELECT
+    c.titulo                    AS cancion,
+    a.nombre_artistico          AS artista,
+    COUNT(r.id_reproduccion)    AS total_escuchas
+FROM reproducciones r
+INNER JOIN canciones c  ON r.id_cancion  = c.id_cancion
+INNER JOIN artistas  a  ON c.id_artista  = a.id_artista
+GROUP BY c.id_cancion, c.titulo, a.nombre_artistico
+ORDER BY total_escuchas DESC;
 
+SELECT
+    p.nombre                    AS playlist,
+    u.nombre                    AS propietario,
+    pc.posicion,
+    c.titulo                    AS cancion,
+    a.nombre_artistico          AS artista
+FROM playlists          p
+INNER JOIN usuarios           u   ON p.id_usuario  = u.id_usuario
+INNER JOIN playlist_canciones pc  ON p.id_playlist = pc.id_playlist
+INNER JOIN canciones          c   ON pc.id_cancion  = c.id_cancion
+INNER JOIN artistas           a   ON c.id_artista   = a.id_artista
+ORDER BY p.nombre, pc.posicion;
+
+SELECT
+    CONCAT(u.nombre, ' ', u.apellidos)  AS usuario,
+    c.titulo                            AS cancion,
+    a.nombre_artistico                  AS artista,
+    r.fecha_hora
+FROM reproducciones r
+INNER JOIN usuarios  u  ON r.id_usuario = u.id_usuario
+INNER JOIN canciones c  ON r.id_cancion = c.id_cancion
+INNER JOIN artistas  a  ON c.id_artista = a.id_artista
+ORDER BY u.nombre, r.fecha_hora DESC;
