@@ -1,8 +1,6 @@
 CREATE TABLE IF NOT EXISTS artistas (
-    id_artista INT NOT NULL AUTO_INCREMENT,
+    id_artista INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_artistico VARCHAR(150)  NOT NULL,
     pais VARCHAR(80),
-    biografia TEXT,
-
-    CONSTRAINT pk_artista PRIMARY KEY (id_artista)
+    biografia TEXT
 );
