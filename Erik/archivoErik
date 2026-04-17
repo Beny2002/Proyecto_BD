@@ -1,1 +1,18 @@
+CREATE TABLE IF NOT EXISTS canciones (
+    id_cancion   INT NOT NULL AUTO_INCREMENT,
+    titulo  VARCHAR(200) NOT NULL,
+    duracion_seg   SMALLINT UNSIGNED NOT NULL,
+    id_album  INT  NOT NULL,
+    id_artista  INT  NOT NULL,
+
+    CONSTRAINT pk_cancion  PRIMARY KEY (id_cancion),
+    CONSTRAINT fk_cancion_album  FOREIGN KEY (id_album)
+        REFERENCES albums(id_album)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_cancion_artista FOREIGN KEY (id_artista)
+        REFERENCES artistas(id_artista)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
 
