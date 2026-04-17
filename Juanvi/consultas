@@ -1,3 +1,4 @@
+-- 1
 SELECT
     c.titulo                    AS cancion,
     a.nombre_artistico          AS artista,
@@ -8,6 +9,7 @@ INNER JOIN artistas  a  ON c.id_artista  = a.id_artista
 GROUP BY c.id_cancion, c.titulo, a.nombre_artistico
 ORDER BY total_escuchas DESC;
 
+-- 2
 SELECT
     p.nombre                    AS playlist,
     u.nombre                    AS propietario,
@@ -21,6 +23,7 @@ INNER JOIN canciones          c   ON pc.id_cancion  = c.id_cancion
 INNER JOIN artistas           a   ON c.id_artista   = a.id_artista
 ORDER BY p.nombre, pc.posicion;
 
+-- 3
 SELECT
     CONCAT(u.nombre, ' ', u.apellidos)  AS usuario,
     c.titulo                            AS cancion,
