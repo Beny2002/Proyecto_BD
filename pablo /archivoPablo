@@ -1,1 +1,13 @@
+CREATE TABLE IF NOT EXISTS albums (
+    id_album INT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(200) NOT NULL,
+    anio_lanzamiento YEAR NOT NULL,
+    genero VARCHAR(80),
+    id_artista INT NOT NULL,
 
+    CONSTRAINT pk_album PRIMARY KEY (id_album),
+    CONSTRAINT fk_album_artista FOREIGN KEY (id_artista)
+        REFERENCES artistas(id_artista)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
