@@ -1,31 +1,29 @@
-USE musicstream;
-
 CREATE TABLE IF NOT EXISTS playlists (
-    id_playlist     INT           NOT NULL AUTO_INCREMENT,
-    nombre          VARCHAR(150)  NOT NULL,
-    fecha_creacion  DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    id_usuario      INT           NOT NULL,
+    id_playlist INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_usuario  INT NOT NULL,
 
-    CONSTRAINT pk_playlist         PRIMARY KEY (id_playlist),
+    CONSTRAINT pk_playlist PRIMARY KEY (id_playlist),
     CONSTRAINT fk_playlist_usuario FOREIGN KEY (id_usuario)
         REFERENCES usuarios(id_usuario)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
--- Tabla intermedia que resuelve la relación N:M
--- Una playlist tiene varias canciones, una canción puede estar en varias playlists
+ 
+ 
 CREATE TABLE IF NOT EXISTS playlist_canciones (
-    id_playlist     INT              NOT NULL,
-    id_cancion      INT              NOT NULL,
-    posicion        TINYINT UNSIGNED NOT NULL DEFAULT 1,
+    id_playlist INT NOT NULL,
+    id_cancion INT NOT NULL,
+    posicion TINYINT UNSIGNED NOT NULL DEFAULT 1,
 
     CONSTRAINT pk_playlist_cancion PRIMARY KEY (id_playlist, id_cancion),
-    CONSTRAINT fk_pc_playlist      FOREIGN KEY (id_playlist)
+    CONSTRAINT fk_pc_playlist FOREIGN KEY (id_playlist)
         REFERENCES playlists(id_playlist)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    CONSTRAINT fk_pc_cancion       FOREIGN KEY (id_cancion)
+    CONSTRAINT fk_pc_cancion FOREIGN KEY (id_cancion)
         REFERENCES canciones(id_cancion)
         ON DELETE CASCADE
         ON UPDATE CASCADE
